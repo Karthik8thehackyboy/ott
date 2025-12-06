@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OTT Subscriptions & Renewal Reminders</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>OTT Subscriptions</h1>
+    <button id="notify-permission">Enable Notifications</button>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Add subscription</h2>
+      <form id="subForm">
+        <div class="grid">
+          <label>
+            Name
+            <input type="text" id="name" placeholder="Netflix, Prime Video..." required />
+          </label>
+          <label>
+            Plan
+            <input type="text" id="plan" placeholder="Mobile, Annual, Family..." />
+          </label>
+          <label>
+            Cost (₹)
+            <input type="number" id="cost" min="0" step="0.01" />
+          </label>
+          <label>
+            Renewal date
+            <input type="date" id="renewalDate" required />
+          </label>
+          <label>
+            Cycle
+            <select id="cycle">
+              <option value="monthly">Monthly</option>
+              <option value="quarterly">Quarterly</option>
+              <option value="semiannual">Semi-annual</option>
+              <option value="annual" selected>Annual</option>
+              <option value="custom">Custom (days)</option>
+            </select>
+          </label>
+          <label id="customDaysWrap" class="hidden">
+            Custom days
+            <input type="number" id="customDays" min="1" placeholder="e.g., 45" />
+          </label>
+          <label class="span-2">
+            Notes
+            <input type="text" id="notes" placeholder="Cashback, promo code, shared?" />
+          </label>
+        </div>
+        <div class="actions">
+          <button type="submit">Save</button>
+          <button type="reset" class="secondary">Reset</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Upcoming renewals</h2>
+      <div class="filters">
+        <label>
+          Show window (days)
+          <input type="number" id="windowDays" min="1" value="30" />
+        </label>
+        <label>
+          Search
+          <input type="text" id="search" placeholder="Name, plan, notes..." />
+        </label>
+        <button id="export">Export JSON</button>
+        <input type="file" id="importFile" accept="application/json" />
+      </div>
+      <table id="subsTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Plan</th>
+            <th>Cost (₹)</th>
+            <th>Renewal date</th>
+            <th>Cycle</th>
+            <th>Next date</th>
+            <th>Days left</th>
+            <th>Notes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <small>Data is stored locally in your browser. For email/WhatsApp alerts, see the Node.js option.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
